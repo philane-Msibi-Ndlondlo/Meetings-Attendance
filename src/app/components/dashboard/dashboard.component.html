@@ -1,0 +1,152 @@
+<div class="dashboard">
+  <app-navbar></app-navbar>
+  <div class="container">
+    <h1 *ngIf="!meetings">Loading Meetings...</h1>
+    <br/>
+    <br/>
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs teal" style="margin: 0 auto;">
+          <li class="tab col s3"><a style="color: #fff;" class="active" href="#test1">UP COMING</a></li>
+          <li class="tab col s3"><a style="color: #fff;" href="#test2">PAST</a></li>
+          <li class="tab col s3"><a style="color: #fff;" href="#test3">ALL</a></li>
+        </ul>
+      </div>
+      <div id="test1" class="col s12">
+        <h1>New Meetings</h1>
+        <div class="meetingsContainer">
+          <ul class="collapsible popout">
+            <li *ngFor="let event of newMeeting">
+              <div class="collapsible-header space">
+                <p class="subject"><i class="material-icons">event</i><strong>{{event.subject}}</strong></p>
+                <p class="organizer">{{event.organizer.emailAddress.name}}</p>
+                <p class="date">{{event.startDate}}</p>
+              </div>
+              <div class="collapsible-body">
+                <h4 class="inner-subject"> {{ event.subject }}</h4>
+                <h6 style="font-size: 12px;">
+                  <i class="material-icons" style="font-size: 12px;">alarm</i>
+                  {{ event.startTime }} - {{ event.endTime }}
+                </h6>
+                <h6 style="font-size: 12px;">
+                  <i class="material-icons" style="font-size: 12px;">room</i>
+                  {{ event.location.displayName ? event.location.displayName : "Unknown" }}
+                </h6>
+                <h5>Attendees:</h5>
+                <ul class="collection">
+                  <li class="collection-item avatar" *ngFor="let attendee of event.attendees">
+                    <i class="material-icons circle green" style="font-size: 40px;">person_circle</i>
+                    <span class="title" style="font-size: 18px;"><strong>{{attendee.emailAddress.name}}</strong></span>
+                    <h6>
+                      <i title="Response" class="material-icons">{{ attendee.status.response === 'accepted' ? "done_all" : attendee.status.response==='none' ? "remove" : "clear" }}</i>
+                      *
+                      <i title="Required?" class="material-icons">{{ attendee.type === 'required' ? "report" : "report_off" }}</i>
+                    </h6>
+                    <a href="javascript:void(0)" class="secondary-content" title="Attended?">
+                      <label>
+                        <input type="checkbox" [disabled]="event.show" />
+                        <span></span>
+                      </label>
+                    </a>
+                  </li>
+                </ul>
+                <br/><br/>
+              <a href="javascript:void(0)" class="btn-floating btn-large waves-effect waves-light teal right" title="Save" style="margin-top: -40px;"><i class="material-icons">playlist_add_check</i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="test2" class="col s12">
+        <h1>Past Meetings</h1>
+        <div class="meetingsContainer">
+          <ul class="collapsible popout">
+            <li *ngFor="let event of pastMeeting">
+              <div class="collapsible-header space">
+                <p class="subject"><i class="material-icons">event</i><strong>{{event.subject}}</strong></p>
+                <p class="organizer">{{event.organizer.emailAddress.name}}</p>
+                <p class="date">{{event.startDate}}</p>
+              </div>
+              <div class="collapsible-body">
+                <h4 class="inner-subject"> {{ event.subject }}</h4>
+                <h6 style="font-size: 12px;">
+                  <i class="material-icons" style="font-size: 12px;">alarm</i>
+                  {{ event.startTime }} - {{ event.endTime }}
+                </h6>
+                <h6 style="font-size: 12px;">
+                  <i class="material-icons" style="font-size: 12px;">room</i>
+                  {{ event.location.displayName ? event.location.displayName : "Unknown" }}
+                </h6>
+                <h5>Attendees:</h5>
+                <ul class="collection">
+                  <li class="collection-item avatar" *ngFor="let attendee of event.attendees">
+                    <i class="material-icons circle green" style="font-size: 40px;">person_circle</i>
+                    <span class="title" style="font-size: 18px;"><strong>{{attendee.emailAddress.name}}</strong></span>
+                    <h6>
+                      <i title="Response" class="material-icons">{{ attendee.status.response === 'accepted' ? "done_all" : attendee.status.response==='none' ? "remove" : "clear" }}</i>
+                      *
+                      <i title="Required?" class="material-icons">{{ attendee.type === 'required' ? "report" : "report_off" }}</i>
+                    </h6>
+                    <a href="javascript:void(0)" class="secondary-content" title="Attended?">
+                      <label>
+                        <input type="checkbox" [disabled]="event.show" />
+                        <span></span>
+                      </label>
+                    </a>
+                  </li>
+                </ul>
+                <br/><br/>
+              <a href="javascript:void(0)" class="btn-floating btn-large waves-effect waves-light teal right" title="Save" style="margin-top: -40px;"><i class="material-icons">playlist_add_check</i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <div id="test3" class="col s12">
+        <div class="meetingsContainer">
+          <ul class="collapsible popout">
+            <li *ngFor="let event of meetings">
+              <div class="collapsible-header space">
+                <p class="subject"><i class="material-icons">event</i><strong>{{event.subject}}</strong></p>
+                <p class="organizer">{{event.organizer.emailAddress.name}}</p>
+                <p class="date">{{event.startDate}}</p>
+              </div>
+              <div class="collapsible-body">
+                <h4 class="inner-subject"> {{ event.subject }}</h4>
+                <h6 style="font-size: 12px;">
+                  <i class="material-icons" style="font-size: 12px;">alarm</i>
+                  {{ event.startTime }} - {{ event.endTime }}
+                </h6>
+                <h6 style="font-size: 12px;">
+                  <i class="material-icons" style="font-size: 12px;">room</i>
+                  {{ event.location.displayName ? event.location.displayName : "Unknown" }}
+                </h6>
+                <h5>Attendees:</h5>
+                <ul class="collection">
+                  <li class="collection-item avatar" *ngFor="let attendee of event.attendees">
+                    <i class="material-icons circle green" style="font-size: 40px;">person_circle</i>
+                    <span class="title" style="font-size: 18px;"><strong>{{attendee.emailAddress.name}}</strong></span>
+                    <h6>
+                      <i title="Response" class="material-icons">{{ attendee.status.response === 'accepted' ? "done_all" : attendee.status.response==='none' ? "remove" : "clear" }}</i>
+                      *
+                      <i title="Required?" class="material-icons">{{ attendee.type === 'required' ? "report" : "report_off" }}</i>
+                    </h6>
+                    <a href="javascript:void(0)" class="secondary-content" title="Attended?">
+                      <label>
+                        <input type="checkbox" [disabled]="event.show" />
+                        <span></span>
+                      </label>
+                    </a>
+                  </li>
+                </ul>
+                <br/><br/>
+              <a href="javascript:void(0)" class="btn-floating btn-large waves-effect waves-light teal right" title="Save" style="margin-top: -40px;"><i class="material-icons">playlist_add_check</i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

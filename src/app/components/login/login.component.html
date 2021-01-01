@@ -1,0 +1,14 @@
+<div class="bg">
+  <app-navbar></app-navbar>
+  <div class="cont valign-wrappe">
+    <div class="showAuth" *ngIf="!authenticated">
+        <h4>Monitor your Meetings...</h4>
+        <br/>
+        <div class="button">
+          <a href="javascript:void(0)" (click)="signIn()" class="waves-effect waves-light btn-large"><i class="material-icons right">send</i>Sign In Here</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+

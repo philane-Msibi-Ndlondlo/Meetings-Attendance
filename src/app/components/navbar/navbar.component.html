@@ -1,0 +1,30 @@
+<div *ngIf="authenticated; then showAuthMenu else noAuthMenu" ></div>
+<ng-template #showAuthMenu>
+  <nav>
+    <div class="nav-wrapper teal">
+      <a style="padding-left: 10px" href="javascript:void(0)" class="brand-logo">Attendy</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="javascript:void(0)">DFA Website</a></li>
+        <li><a href="javascript:void(0)">
+        <span class="material-icons">
+        account_circle
+        </span>
+        {{user.displayName}}
+        </a></li>
+        <li><a href="javascript:void(0)" (click)="signOut()">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+</ng-template>
+<ng-template #noAuthMenu>
+<nav>
+  <div class="nav-wrapper teal">
+    <a style="padding-left: 10px" href="javascript:void(0)" class="brand-logo">Attendy</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="javascript:void(0)">DFA Website</a></li>
+      <li><a href="javascript:void(0)">Intranet</a></li>
+      <li><a href="javascript:void(0)">Log a Ticket</a></li>
+    </ul>
+  </div>
+</nav>
+</ng-template>
